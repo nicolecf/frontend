@@ -1,6 +1,7 @@
 import React from 'react'
 import IconButton from '../template/iconButton'
 import If from '../template/if'
+import '../template/custom.css'
 
 export default (props) => {
 
@@ -9,7 +10,7 @@ export default (props) => {
         const list = props.list || []
         return list.map(todo => (
             <tr key={todo._id}>
-                <td>{todo.description}</td>
+                <td>{!todo.done ? todo.description : <del>{todo.description}</del>}</td>
                 <td>
                     <If test={!todo.done}>
                         <IconButton style='success' icon='check'
@@ -31,7 +32,7 @@ export default (props) => {
             <thead>
                 <tr>
                     <th>Descrição</th>
-                    <th>Ações</th>
+                    <th className="tableActions">Ações</th>
                 </tr>
             </thead>
             <tbody>
